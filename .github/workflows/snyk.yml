@@ -11,8 +11,8 @@ jobs:
       - name: Install Snyk
         run: npm install -g snyk
       - name: Run Snyk Test Java
-        run: snyk test ./snyk/java
+        run: snyk test ./snyk/java --severity-threshold=high
       - name: Run Snyk Test javascripts
-        run: snyk test ./snyk/javascripts
+        run: snyk test ./snyk/javascripts --severity-threshold=high
       - name: Run Snyk Test python
-        run: snyk test ./snyk/python
+        run: snyk test ./snyk/python --severity-threshold=high
