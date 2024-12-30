@@ -8,13 +8,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Install Snyk
         run: npm install -g snyk
+
+      # Java analysis
       - name: Run Snyk Test Java
         run: snyk test ./snyk/java --severity-threshold=high
-      - name: install dependencies
+
+      # JavaScript analysis
+      - name: Install JavaScript Dependencies
+        working-directory: ./snyk/javascripts
         run: npm install
-      - name: Run Snyk Test javascripts
+      - name: Run Snyk Test JavaScript
         run: snyk test ./snyk/javascripts --severity-threshold=high
-      - name: Run Snyk Test python
+
+      # Python analysis
+      - name: Install Python Dependencies
+        working-directory: ./snyk/python
+        run: pip install -r requirements.txt
+      - name: Run Snyk Test Python
         run: snyk test ./snyk/python --severity-threshold=high
